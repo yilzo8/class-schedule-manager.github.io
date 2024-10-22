@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <!-- Minecraft 重要生物介紹 -->
+  <!-- Minecraft 生物介紹 -->
   <div class="content">
     <h2>Minecraft 生物介紹</h2>
     <p>在 Minecraft 中，你將遇到許多不同的生物，包括友好的和敵對的生物。以下是一些重要的生物：</p>
@@ -93,11 +93,77 @@
       </div>
     </div>
   </div>
+
+  <!-- Minecraft 心理測驗小遊戲 -->
+  <div class="content">
+    <h2>Minecraft 心理測驗：你是哪種 Minecraft 玩家？</h2>
+    <p>回答以下問題，看看你是哪一種 Minecraft 玩家：</p>
+
+    <form id="quiz-form">
+      <fieldset>
+        <legend>1. 你最喜歡在 Minecraft 中做什麼？</legend>
+        <label><input type="radio" name="question1" value="建造"> 建造壯麗的建築</label><br>
+        <label><input type="radio" name="question1" value="探險"> 探索新的世界與洞窟</label><br>
+        <label><input type="radio" name="question1" value="戰鬥"> 與敵對生物戰鬥</label><br>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. 如果遇到一隻怪物，你會怎麼做？</legend>
+        <label><input type="radio" name="question2" value="逃跑"> 逃跑</label><br>
+        <label><input type="radio" name="question2" value="打敗它"> 打敗它</label><br>
+        <label><input type="radio" name="question2" value="避開它"> 盡量避開它</label><br>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. 你最喜歡的 Minecraft 模式是？</legend>
+        <label><input type="radio" name="question3" value="創造"> 創造模式</label><br>
+        <label><input type="radio" name="question3" value="生存"> 生存模式</label><br>
+        <label><input type="radio" name="question3" value="冒險"> 冒險模式</label><br>
+      </fieldset>
+
+      <div>
+        <button type="button" onclick="submitQuiz()">提交答案</button>
+      </div>
+    </form>
+
+    <div id="quiz-result" style="display:none;">
+      <h3>測驗結果：</h3>
+      <p id="result-text"></p>
+    </div>
+  </div>
 </div>
 
 <footer>
   <p>© 2024 Minecraft | 官方網站: <a href="https://www.minecraft.net" target="_blank">minecraft.net</a></p>
 </footer>
+
+<script>
+  function submitQuiz() {
+    var result = "";
+    var q1 = document.querySelector('input[name="question1"]:checked');
+    var q2 = document.querySelector('input[name="question2"]:checked');
+    var q3 = document.querySelector('input[name="question3"]:checked');
+
+    if (q1 && q2 && q3) {
+      // 根據選擇的答案來決定結果
+      if (q1.value === "建造" && q2.value === "打敗它" && q3.value === "創造") {
+        result = "你是 Minecraft 的建築大師，總是喜歡建造令人驚嘆的結構，並在遊戲中創造屬於你的世界！";
+      } else if (q1.value === "探險" && q2.value === "逃跑" && q3.value === "生存") {
+        result = "你是 Minecraft 的探險家，總是對探索未知的世界充滿好奇，並且在生存模式中勇敢面對挑戰！";
+      } else if (q1.value === "戰鬥" && q2.value === "打敗它" && q3.value === "冒險") {
+        result = "你是 Minecraft 的戰士，總是熱衷於與敵對生物戰鬥，並挑戰遊戲中的各種冒險！";
+      } else {
+        result = "你擁有多重風格，可能是 Minecraft 的全能玩家，喜歡建造、探險和戰鬥，隨心所欲！";
+      }
+
+      // 顯示結果
+      document.getElementById("quiz-result").style.display = "block";
+      document.getElementById("result-text").innerText = result;
+    } else {
+      alert("請回答所有問題！");
+    }
+  }
+</script>
 
 </body>
 </html>
