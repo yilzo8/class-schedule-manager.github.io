@@ -163,3 +163,56 @@ footer a {
 footer a:hover {
   color: #00bcd4;
 }
+
+/* Quiz Form Styling */
+form {
+  text-align: left;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+fieldset {
+  border: 2px solid #006400;
+  margin: 10px 0;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+legend {
+  font-size: 1.2em;
+  color: #006400;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #004d00;
+}
+
+#quiz-result {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#quiz-result h3 {
+  font-size: 24px;
+  color: #006400;
+}
+
+#quiz-result p {
+  font-size: 18px;
+}
