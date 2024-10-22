@@ -5,81 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Minecraft - 探索無限可能的沙盒世界！">
   <title>Minecraft - 無限創造的沙盒世界</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      background-color: #1a1a1a;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 36px;
-    }
-    header p {
-      margin-top: 10px;
-      font-size: 18px;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .content {
-      text-align: center;
-      margin-top: 40px;
-    }
-    .content h2 {
-      font-size: 28px;
-      color: #006400;
-    }
-    .content p {
-      font-size: 18px;
-      margin-top: 10px;
-    }
-    .image-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .image-container img {
-      width: 60%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .buttons {
-      margin-top: 40px;
-    }
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 18px;
-    }
-    .buttons a:hover {
-      background-color: #0056b3;
-    }
-    footer {
-      background-color: #1a1a1a;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -89,12 +15,13 @@
 </header>
 
 <div class="container">
+  <!-- Minecraft 介紹區域 -->
   <div class="content">
     <h2>什麼是 Minecraft？</h2>
-    <p>Minecraft 是一款沙盒遊戲，讓玩家在一個由方塊構成的世界中自由建造、探險、求生，並與其他玩家共同體驗無盡的創造樂趣。</p>
+    <p>Minecraft 是一款無限自由的沙盒遊戲，玩家可以在方塊世界中建造、探險、求生，並與朋友共享冒險。</p>
 
     <div class="image-container">
-      <img src="https://via.placeholder.com/800x400?text=Minecraft+圖片" alt="Minecraft世界">
+      <img src="https://via.placeholder.com/800x400?text=Minecraft+世界" alt="Minecraft World">
     </div>
 
     <div class="buttons">
@@ -103,20 +30,73 @@
     </div>
   </div>
 
+  <!-- Minecraft 特色介紹 -->
   <div class="content">
     <h2>Minecraft 的特色</h2>
-    <ul>
-      <li>隨機生成的世界，無窮無盡的冒險。</li>
-      <li>多種模式，從生存到創造，滿足不同玩家需求。</li>
-      <li>與朋友一起連線遊玩，開設自己的伺服器。</li>
-      <li>不斷更新的內容，讓遊戲保持新鮮感。</li>
-      <li>擁有龐大的玩家社群和無數的模組，讓遊戲更加多樣化。</li>
+    <ul class="feature-list">
+      <li>隨機生成的世界，無盡的冒險。</li>
+      <li>多種遊戲模式，從生存到創造，滿足不同玩家需求。</li>
+      <li>與全球玩家連線，開啟自己的伺服器。</li>
+      <li>不斷更新的遊戲內容，保持新鮮感。</li>
+      <li>龐大的玩家社群，擁有各種模組與擴展功能。</li>
     </ul>
+  </div>
+
+  <!-- Minecraft 角色介紹 -->
+  <div class="content">
+    <h2>遊戲角色介紹</h2>
+    <p>在 Minecraft 的世界裡，有許多不同的角色和生物。以下是一些你會遇到的角色：</p>
+
+    <div class="character-container">
+      <div class="character">
+        <img src="https://via.placeholder.com/200x200?text=Steve" alt="Steve" class="character-img">
+        <h3>Steve</h3>
+        <p>Steve 是 Minecraft 的默認角色，玩家在遊戲開始時通常以 Steve 的身份進行冒險。</p>
+      </div>
+
+      <div class="character">
+        <img src="https://via.placeholder.com/200x200?text=Alex" alt="Alex" class="character-img">
+        <h3>Alex</h3>
+        <p>Alex 是 Minecraft 的另一個角色選項，擁有不同的外觀，玩家可以選擇作為她進行遊戲。</p>
+      </div>
+
+      <div class="character">
+        <img src="https://via.placeholder.com/200x200?text=Enderman" alt="Enderman" class="character-img">
+        <h3>Enderman</h3>
+        <p>Enderman 是 Minecraft 中的神秘生物，擅長傳送，會對玩家進行攻擊，尤其是在玩家盯著它們看時。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minecraft 重要生物介紹 -->
+  <div class="content">
+    <h2>Minecraft 生物介紹</h2>
+    <p>在 Minecraft 中，你將遇到許多不同的生物，包括友好的和敵對的生物。以下是一些重要的生物：</p>
+
+    <div class="creature-container">
+      <div class="creature">
+        <img src="https://via.placeholder.com/150x150?text=Zombie" alt="Zombie" class="creature-img">
+        <h3>殭屍 (Zombie)</h3>
+        <p>殭屍是 Minecraft 中最常見的敵對生物，會在晚上或是黑暗的地方出現，對玩家進行攻擊。</p>
+      </div>
+
+      <div class="creature">
+        <img src="https://via.placeholder.com/150x150?text=Skeleton" alt="Skeleton" class="creature-img">
+        <h3>骷髏 (Skeleton)</h3>
+        <p>骷髏會使用弓箭進行遠程攻擊，並且會在夜晚或地下礦洞中經常出現。</p>
+      </div>
+
+      <div class="creature">
+        <img src="https://via.placeholder.com/150x150?text=Creeper" alt="Creeper" class="creature-img">
+        <h3>苦力怕 (Creeper)</h3>
+        <p>苦力怕是一種爆炸性生物，會悄悄靠近玩家並在接近後自爆，對周圍的區域造成巨大的破壞。</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <footer>
-  <p>© 2024 Minecraft | 官方網站: <a href="https://www.minecraft.net" target="_blank" style="color: #fff;">minecraft.net</a></p>
+  <p>© 2024 Minecraft | 官方網站: <a href="https://www.minecraft.net" target="_blank">minecraft.net</a></p>
 </footer>
 
 </body>
