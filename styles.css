@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minecraft - 探索無限可能的沙盒世界！">
+  <title>Minecraft - 無限創造的沙盒世界</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #e0e0e0;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      background: url('https://via.placeholder.com/1920x1080?text=Minecraft+背景圖') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      background-attachment: fixed;
+    }
+
+    header h1 {
+      font-size: 56px;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    header p {
+      font-size: 24px;
+      margin-top: 10px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    .content {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .content h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #006400;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    }
+
+    .content p {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .image-container img {
+      width: 80%;
+      max-width: 800px;
+      border-radius: 15px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.5s ease;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .buttons {
+      margin-top: 40px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 15px 25px;
+      margin: 10px;
+      background: linear-gradient(145deg, #007bff, #0056b3);
+      color: #fff;
+      font-size: 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background: linear-gradient(145deg, #0056b3, #003f8d);
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 10px;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #00bcd4;
+    }
+
+    .feature-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .feature-list li {
+      background: #fff;
+      color: #333;
+      padding: 20px;
+      margin: 15px;
+      border-radius: 8px;
+      width: 300px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      font-size: 18px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-list li:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Minecraft</h1>
+  <p>探索無限可能的沙盒世界，與朋友一起創造屬於你們的冒險！</p>
+</header>
+
+<div class="container">
+  <div class="content">
+    <h2>什麼是 Minecraft？</h2>
+    <p>Minecraft 是一款無限自由的沙盒遊戲，玩家可以在方塊世界中建造、探險、求生，並與朋友共享冒險。</p>
+
+    <div class="image-container">
+      <img src="https://via.placeholder.com/800x400?text=Minecraft+世界" alt="Minecraft World">
+    </div>
+
+    <div class="buttons">
+      <a href="https://www.minecraft.net/zh-hant" target="_blank">前往官方網站</a>
+      <a href="https://www.youtube.com/results?search_query=minecraft+trailer" target="_blank">觀看遊戲預告片</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Minecraft 的特色</h2>
+    <ul class="feature-list">
+      <li>隨機生成的世界，無盡的冒險。</li>
+      <li>多種遊戲模式，從生存到創造，滿足不同玩家需求。</li>
+      <li>與全球玩家連線，開啟自己的伺服器。</li>
+      <li>不斷更新的遊戲內容，保持新鮮感。</li>
+      <li>龐大的玩家社群，擁有各種模組與擴展功能。</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>© 2024 Minecraft | 官方網站: <a href="https://www.minecraft.net" target="_blank">minecraft.net</a></p>
+</footer>
+
+</body>
+</html>
