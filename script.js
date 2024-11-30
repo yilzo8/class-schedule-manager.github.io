@@ -1,3 +1,17 @@
+document.getElementById("login-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    
+    // 模擬一個簡單的驗證過程
+    if (username === "student" && password === "password123") {
+        // 登入成功，跳轉到課程表頁面
+        window.location.href = "course.html"; // 假設課程表頁面是 course.html
+    } else {
+        alert("帳號或密碼錯誤，請再試一次。");
+    }
+});
 document.addEventListener("DOMContentLoaded", function () {
     // 預先讀取課程資料
     loadCourses();
