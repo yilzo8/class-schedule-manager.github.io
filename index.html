@@ -1,67 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Register</title>
+    <title>課程表管理系統</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Username" required>
-            <input type="password" id="loginPassword" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-
-        <h2>Register</h2>
-        <form id="registerForm">
-            <input type="text" id="registerUsername" placeholder="Username" required>
-            <input type="password" id="registerPassword" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-
-        <p id="message"></p>
+    <div class="container">
+        <h1>課程表管理系統</h1>
+        
+        <div class="course-form">
+            <h2>新增課程</h2>
+            <form id="course-form">
+                <input type="text" id="course-name" placeholder="課程名稱" required>
+                <input type="text" id="course-location" placeholder="上課地點" required>
+                <input type="datetime-local" id="course-time" required>
+                <input type="number" id="reminder-time" placeholder="提醒時間(分鐘)" required>
+                <button type="submit">新增課程</button>
+            </form>
+        </div>
+        
+        <div class="course-list">
+            <h2>我的課程表</h2>
+            <ul id="course-list"></ul>
+        </div>
     </div>
 
-    <script>
-        // 登入邏輯
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const username = document.getElementById("loginUsername").value;
-            const password = document.getElementById("loginPassword").value;
-
-            // 檢查是否已註冊並登入
-            const storedUsername = localStorage.getItem("username");
-            const storedPassword = localStorage.getItem("password");
-
-            if (username === storedUsername && password === storedPassword) {
-                document.getElementById("message").textContent = `Welcome, ${username}!`;
-                document.getElementById("message").style.color = 'green';
-                // 可以跳轉到其他頁面
-                // window.location.href = "schedule.html";
-            } else {
-                document.getElementById("message").textContent = "Invalid login credentials!";
-                document.getElementById("message").style.color = 'red';
-            }
-        });
-
-        // 註冊邏輯
-        document.getElementById("registerForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const username = document.getElementById("registerUsername").value;
-            const password = document.getElementById("registerPassword").value;
-
-            // 儲存註冊資料
-            localStorage.setItem("username", username);
-            localStorage.setItem("password", password);
-
-            document.getElementById("message").textContent = "Registration successful! You can now login.";
-            document.getElementById("message").style.color = 'green';
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
