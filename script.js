@@ -1,36 +1,74 @@
-document.getElementById("login-form").addEventListener("submit", function(e) {
+// 切換頁面
+const loginPage = document.getElementById("login-page");
+const signupPage = document.getElementById("signup-page");
+const coursePage = document.getElementById("course-page");
+
+document.getElementById("to-signup").addEventListener("click", () => {
+    loginPage.classList.add("hidden");
+    signupPage.classList.remove("hidden");
+});
+
+document.getElementById("to-login").addEventListener("click", () => {
+    signupPage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+});
+
+// 註冊邏輯
+document.getElementById("signup-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    
-    // 模擬一個簡單的驗證過程
-    if (username === "student" && password === "password123") {
-        // 登入成功，跳轉到課程表頁面
-        window.location.href = "course.html"; // 假設課程表頁面是 course.html
+    const username = document.getElementById("signup-username").value;
+    const password = document.getElementById("signup-password").value;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    if (users.find((user) => user.username === username)) {
+        alert("帳號已存在！");
     } else {
-        alert("帳號或密碼錯誤，請再試一次。");
+        users.push({ username, password });
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("註冊成功！");
+        signupPage.classList.add("hidden");
+        loginPage.classList.remove("hidden");
     }
 });
-document.addEventListener("DOMContentLoaded", function () {
-    // 預先讀取課程資料
+
+// 登入邏輯
+document.getElementById("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const username = document.getElementById("login-username").value;
+    const password = document.getElementById("login-password").value;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find((user) => user.username === username);
+
+    if (!user) {
+        alert("帳號不存在！");
+    } else if (user.password !== password) {
+        alert("密碼錯誤！");
+    } else {
+        alert("登入成功！");
+        loginPage.classList.add("hidden");
+        coursePage.classList.remove("hidden");
+    }
+});
+
+// 登出邏輯
+document.getElementById("logout-btn").addEventListener("click", () => {
+    coursePage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+});
+
+// 課程邏輯
+document.getElementById("course-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("course-name").value;
+    const location = document.getElementById("course-location").value;
+    const time = document.getElementById("course-time").value;
+    const reminderTime = parseInt(document.getElementById("reminder-time").value);
+
+    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    courses.push({ name, location, time, reminderTime });
+    localStorage.setItem("courses", JSON.stringify(courses));
     loadCourses();
-
-    // 處理表單提交
-    document.getElementById("course-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const name = document.getElementById("course-name").value;
-        const location = document.getElementById("course-location").value;
-        const time = new Date(document.getElementById("course-time").value);
-        const reminderTime = parseInt(document.getElementById("reminder-time").value);
-
-        if (name && location && time && reminderTime) {
-            const course = { name, location, time, reminderTime };
-            saveCourse(course);
-            setReminder(course);
-            loadCourses();
-        }
-    });
 });
 
 function loadCourses() {
@@ -40,35 +78,17 @@ function loadCourses() {
 
     courses.forEach((course, index) => {
         const li = document.createElement("li");
-        li.innerHTML = `
-            <span>${course.name} - ${course.location} - ${course.time.toLocaleString()}</span>
-            <button onclick="deleteCourse(${index})">刪除</button>
-        `;
+        li.textContent = `${course.name} - ${course.location} - ${new Date(course.time).toLocaleString()}`;
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "刪除";
+        delBtn.addEventListener("click", () => {
+            courses.splice(index, 1);
+            localStorage.setItem("courses", JSON.stringify(courses));
+            loadCourses();
+        });
+        li.appendChild(delBtn);
         courseList.appendChild(li);
     });
 }
 
-function saveCourse(course) {
-    const courses = JSON.parse(localStorage.getItem("courses")) || [];
-    courses.push(course);
-    localStorage.setItem("courses", JSON.stringify(courses));
-}
-
-function deleteCourse(index) {
-    const courses = JSON.parse(localStorage.getItem("courses")) || [];
-    courses.splice(index, 1);
-    localStorage.setItem("courses", JSON.stringify(courses));
-    loadCourses();
-}
-
-function setReminder(course) {
-    const timeLeft = course.time - new Date();
-    const reminderTime = course.reminderTime * 60 * 1000;
-
-    if (timeLeft > reminderTime) {
-        setTimeout(() => {
-            alert(`提醒: ${course.name} 即將開始！`);
-            new Audio('https://www.soundjay.com/button/beep-07.wav').play();
-        }, timeLeft - reminderTime);
-    }
-}
+document.addEventListener("DOMContentLoaded", loadCourses);
