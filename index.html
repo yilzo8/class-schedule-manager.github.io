@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登入頁面</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>課程管理系統</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>登入</h2>
+    <div id="login-page" class="container">
+        <h1>登入</h1>
         <form id="login-form">
-            <input type="text" id="username" placeholder="使用者名稱" required>
-            <input type="password" id="password" placeholder="密碼" required>
+            <input type="text" id="login-username" placeholder="使用者名稱" required>
+            <input type="password" id="login-password" placeholder="密碼" required>
             <button type="submit">登入</button>
         </form>
+        <p>沒有帳號？<a href="#" id="to-signup">立即註冊</a></p>
     </div>
-    <script src="login.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>課程表管理系統</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
+
+    <div id="signup-page" class="container hidden">
+        <h1>註冊</h1>
+        <form id="signup-form">
+            <input type="text" id="signup-username" placeholder="使用者名稱" required>
+            <input type="password" id="signup-password" placeholder="密碼" required>
+            <button type="submit">註冊</button>
+        </form>
+        <p>已有帳號？<a href="#" id="to-login">回到登入</a></p>
+    </div>
+
+    <div id="course-page" class="container hidden">
         <h1>課程表管理系統</h1>
-        
         <div class="course-form">
             <h2>新增課程</h2>
             <form id="course-form">
@@ -40,13 +39,12 @@
                 <button type="submit">新增課程</button>
             </form>
         </div>
-        
         <div class="course-list">
             <h2>我的課程表</h2>
             <ul id="course-list"></ul>
         </div>
+        <button id="logout-btn">登出</button>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
