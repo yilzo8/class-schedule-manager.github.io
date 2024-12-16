@@ -153,4 +153,40 @@ document.addEventListener("DOMContentLoaded", () => {
     requestNotificationPermission();
     loadCourses();
 });
+console.log("測試通知程式碼執行中...");
+const img = new Image();
+img.src = "icon.png";
+img.onload = () => console.log("icon.png 成功加載");
+img.onerror = () => console.error("icon.png 無法加載，請檢查路徑");
+document.addEventListener("DOMContentLoaded", () => {
+    const testBtn = document.createElement("button");
+    testBtn.textContent = "測試通知";
+    testBtn.style.padding = "10px";
+    testBtn.style.marginTop = "20px";
+    testBtn.style.backgroundColor = "#007BFF";
+    testBtn.style.color = "white";
+    document.body.appendChild(testBtn);
+
+    testBtn.addEventListener("click", () => {
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    new Notification("測試通知", {
+                        body: "這是一個測試通知，證明通知功能可用。",
+                        icon: "icon.png"
+                    });
+                    console.log("測試通知已發送！");
+                } else {
+                    alert("通知權限未啟用！");
+                }
+            });
+        } else {
+            new Notification("測試通知", {
+                body: "這是一個測試通知，證明通知功能可用。",
+                icon: "icon.png"
+            });
+            console.log("測試通知已發送！");
+        }
+    });
+});
 
