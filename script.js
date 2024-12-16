@@ -13,14 +13,16 @@ document.getElementById("to-login").addEventListener("click", () => {
     loginPage.classList.remove("hidden");
 });
 
-// 請求通知權限
+// 強制請求通知權限
 function requestNotificationPermission() {
+    console.log("目前通知權限:", Notification.permission);
     if (Notification.permission === "default" || Notification.permission === "denied") {
         Notification.requestPermission().then(permission => {
+            console.log("用戶授予的通知權限:", permission);
             if (permission === "granted") {
                 console.log("通知權限已授予");
             } else {
-                alert("請在瀏覽器設定中啟用通知權限，否則無法使用提醒功能！");
+                alert("請在瀏覽器設定中啟用通知權限！");
             }
         });
     } else if (Notification.permission === "granted") {
@@ -43,7 +45,6 @@ document.getElementById("signup-form").addEventListener("submit", function (e) {
         alert("註冊成功！");
         signupPage.classList.add("hidden");
         loginPage.classList.remove("hidden");
-        console.log("儲存的使用者資料:", users);
     }
 });
 
@@ -77,56 +78,54 @@ document.getElementById("logout-btn").addEventListener("click", () => {
 // 課程邏輯
 document.getElementById("course-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    const name = document.getElementById("course-name").value.trim();
-    const location = document.getElementById("course-location").value.trim();
+    const name = document.getElementById("course-name").value;
+    const location = document.getElementById("course-location").value;
     const time = new Date(document.getElementById("course-time").value);
     const reminderTime = parseInt(document.getElementById("reminder-time").value);
 
+    const now = new Date();
     if (isNaN(reminderTime) || reminderTime <= 0) {
         alert("提醒時間必須是正數！");
         return;
     }
 
-    const now = new Date();
-    if (time <= now) {
-        alert("課程時間必須是未來時間！");
+    const timeDifference = time.getTime() - now.getTime() - reminderTime * 60000;
+    if (timeDifference <= 0) {
+        alert("提醒時間過短，無法設置提醒！");
         return;
     }
 
     const courses = JSON.parse(localStorage.getItem("courses")) || [];
     courses.push({ name, location, time: time.toISOString(), reminderTime });
     localStorage.setItem("courses", JSON.stringify(courses));
-    alert("課程已新增！");
     loadCourses();
     setReminder(name, time, reminderTime);
 });
 
-// 設置提醒通知
+// 設置通知提醒
 function setReminder(name, time, reminderTime) {
     const now = new Date();
-    const reminderMilliseconds = reminderTime * 60000; // 轉換提醒時間為毫秒
-    const triggerTime = new Date(time - reminderMilliseconds);
+    const triggerTime = new Date(time.getTime() - reminderTime * 60000);
+    const timeDifference = triggerTime - now;
 
-    if (triggerTime > now) {
-        const timeDifference = triggerTime - now;
-        console.log(`提醒時間設定於: ${triggerTime.toLocaleString()}`);
+    console.log(`設定提醒: 課程名稱: ${name}, 剩餘時間差 (毫秒): ${timeDifference}`);
+
+    if (timeDifference > 0) {
         setTimeout(() => {
             if (Notification.permission === "granted") {
                 new Notification("課程提醒", {
                     body: `您的課程 "${name}" 即將開始！`,
-                    icon: "icon.png" // 使用本地圖片
+                    icon: "./icon.png" // 圖示路徑
                 });
                 console.log("提醒通知已發送！");
             } else {
                 alert(`提醒: 您的課程 "${name}" 即將開始！`);
             }
         }, timeDifference);
-    } else {
-        alert("提醒時間過短，無法設置通知！");
     }
 }
 
-// 載入課程列表
+// 載入課程
 function loadCourses() {
     const courses = JSON.parse(localStorage.getItem("courses")) || [];
     const courseList = document.getElementById("course-list");
@@ -137,7 +136,6 @@ function loadCourses() {
         li.textContent = `${course.name} - ${course.location} - ${new Date(course.time).toLocaleString()}`;
         const delBtn = document.createElement("button");
         delBtn.textContent = "刪除";
-        delBtn.classList.add("btn");
         delBtn.addEventListener("click", () => {
             courses.splice(index, 1);
             localStorage.setItem("courses", JSON.stringify(courses));
@@ -148,45 +146,27 @@ function loadCourses() {
     });
 }
 
-// 初始化頁面
+// 測試通知按鈕
 document.addEventListener("DOMContentLoaded", () => {
     requestNotificationPermission();
     loadCourses();
-});
-console.log("測試通知程式碼執行中...");
-const img = new Image();
-img.src = "icon.png";
-img.onload = () => console.log("icon.png 成功加載");
-img.onerror = () => console.error("icon.png 無法加載，請檢查路徑");
-document.addEventListener("DOMContentLoaded", () => {
-    const testBtn = document.createElement("button");
-    testBtn.textContent = "測試通知";
-    testBtn.style.padding = "10px";
-    testBtn.style.marginTop = "20px";
-    testBtn.style.backgroundColor = "#007BFF";
-    testBtn.style.color = "white";
-    document.body.appendChild(testBtn);
 
-    testBtn.addEventListener("click", () => {
-        if (Notification.permission !== "granted") {
-            Notification.requestPermission().then(permission => {
-                if (permission === "granted") {
-                    new Notification("測試通知", {
-                        body: "這是一個測試通知，證明通知功能可用。",
-                        icon: "icon.png"
-                    });
-                    console.log("測試通知已發送！");
-                } else {
-                    alert("通知權限未啟用！");
-                }
-            });
-        } else {
+    const testButton = document.createElement("button");
+    testButton.textContent = "測試通知";
+    testButton.style.padding = "10px";
+    testButton.style.backgroundColor = "#007BFF";
+    testButton.style.color = "#FFF";
+    document.body.appendChild(testButton);
+
+    testButton.addEventListener("click", () => {
+        if (Notification.permission === "granted") {
             new Notification("測試通知", {
-                body: "這是一個測試通知，證明通知功能可用。",
-                icon: "icon.png"
+                body: "這是一個測試通知！",
+                icon: "./icon.png"
             });
             console.log("測試通知已發送！");
+        } else {
+            alert("通知權限未授予，請啟用通知權限！");
         }
     });
 });
-
