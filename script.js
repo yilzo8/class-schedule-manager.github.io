@@ -153,3 +153,24 @@ document.addEventListener("DOMContentLoaded", () => {
     requestNotificationPermission();
     loadCourses();
 });
+// 測試通知功能
+document.addEventListener("DOMContentLoaded", () => {
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                new Notification("測試通知", {
+                    body: "這是一個測試通知，證明通知功能可用。",
+                    icon: "icon.png"
+                });
+                console.log("測試通知已發送！");
+            }
+        });
+    } else {
+        new Notification("測試通知", {
+            body: "這是一個測試通知，證明通知功能可用。",
+            icon: "icon.png"
+        });
+        console.log("測試通知已發送！");
+    }
+});
+
